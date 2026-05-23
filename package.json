@@ -1,0 +1,28 @@
+{
+  "name": "daminih_arts",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.0",
+    "lucide-react": "^0.525.0",
+    "next": "^16.2.6",
+    "node-cache": "^5.1.2",
+    "nodemailer": "^8.0.7",
+    "razorpay": "^2.9.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11"
+  }
+}
