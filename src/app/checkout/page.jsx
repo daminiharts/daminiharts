@@ -223,11 +223,11 @@ const Checkout = () => {
 
             const result = await verifyRes.json();
 
-            if (result.status === "success") {
-              toast.show(
-                "✅ Payment Successful!",
-                "success"
-              );
+            if (result.success) {
+  toast.show(
+    "✅ Payment Successful!",
+    "success"
+  );
 
               resetCheckout();
 
