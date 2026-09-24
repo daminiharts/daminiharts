@@ -44,13 +44,13 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="mt-10 text-center text-xs text-gray-400 space-y-2">
+      <div className="mt-12 pt-6 border-t border-gray-800 text-center text-xs text-gray-400 space-y-2">
         <p>© {new Date().getFullYear()} Daminih Arts. All rights reserved.</p>
-        <p className="text-[10px]">
+        <p className="text-[11px]">
           Developed by{" "}
           <a
             href="https://www.instagram.com/webjuncture/"
-            className="underline text-yellow-600"
+            className="text-yellow-600 hover:text-yellow-500 transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >

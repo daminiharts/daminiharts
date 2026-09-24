@@ -20,7 +20,7 @@ const AnimatedButton = ({ children, onClick, className = "" }) => {
     <button
       onClick={handleClick}
       disabled={loading}
-      className={`relative cursor-pointer w-30 h-10  text-center border-2 border-black  font-semibold text-black transition-all duration-500 group disabled:opacity-70 disabled:cursor-not-allowed ${className}`}
+      className={`relative cursor-pointer w-32 h-10 rounded-full text-center border border-black font-semibold text-black transition-all duration-500 group disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden ${className}`}
     >
       {/* Background fill animation (hover only) */}
       <span className="absolute inset-0 bg-black scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100 z-0" />

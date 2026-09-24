@@ -210,17 +210,17 @@ const Navbar = () => {
   <AnimatePresence>
   {menuOpen && (
     <>
-      {/* Simple dark overlay (no glassy effect) */}
+      {/* Glassy dark overlay */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
+        animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="fixed inset-0 bg-black z-30"  // Removed backdrop-blur and transparency
+        className="fixed inset-0 bg-black/30 backdrop-blur-sm z-30"
         onClick={toggleMenu}
       />
 
-      {/* Plain dropdown panel (no glassy look) */}
+      {/* Dropdown panel */}
       <motion.div
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: "auto", opacity: 1 }}

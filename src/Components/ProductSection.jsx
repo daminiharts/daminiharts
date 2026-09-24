@@ -43,7 +43,7 @@ function SwappingImage({ images, alt }) {
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 500px"
           priority={i === 0} // Preload first image for LCP
           fetchPriority={i === 0 ? 'high' : 'auto'}
-          className={`w-full h-full object-cover rounded-2xl shadow-lg transition-opacity duration-700 ${
+          className={`w-full h-full object-cover rounded-2xl shadow-lg transition-all duration-700 group-hover:scale-105 ${
             i === index ? 'opacity-100 relative' : 'opacity-0 absolute top-0 left-0'
           }`}
         />
@@ -71,8 +71,8 @@ export default function ProductSection() {
         name: 'Calendars',
         slug: 'Calendars',
         description:
-          'Two themes for 2026 Bollywood Villain and Animal to add a unique vibe to your year.',
-        images: ['/homeimages/calender2.jpg', '/homeimages/calender1.jpeg'],
+          'A beautifully illustrated 2027 fruit calendar featuring hand-painted fruit artworks, paired with simple, useful health benefits for every month.',
+        image: '/homeimages/calendar_2027_fruit.jpg',
       },
     ],
     []
@@ -98,9 +98,9 @@ export default function ProductSection() {
             } md:items-center items-stretch gap-6 md:gap-10`}
           >
             {/* Image Block */}
-            <div className="relative w-full h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] overflow-hidden rounded-2xl">
+            <div className="relative w-full h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] overflow-hidden rounded-2xl group">
               <Link href={`/${product.slug}`} aria-label={`Go to ${product.name} page`} className="block h-full">
-                <div className="absolute inset-0 bg-black/20 z-10 pointer-events-none" />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10 pointer-events-none" />
                 {product.images ? (
                   <SwappingImage
                     images={product.images}
@@ -115,7 +115,7 @@ export default function ProductSection() {
                     priority={i === 0} // LCP optimization
                     fetchPriority={i === 0 ? 'high' : 'auto'}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 500px"
-                    className="w-full h-full object-cover rounded-2xl shadow-lg"
+                    className="w-full h-full object-cover rounded-2xl shadow-lg transition-transform duration-700 group-hover:scale-105"
                   />
                 )}
               </Link>

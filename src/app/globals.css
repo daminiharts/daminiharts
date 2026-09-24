@@ -1,13 +1,35 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #f8f9fa;
+  --color-secondary: #e9ecef;
+  --color-accent: #111827;
+  --color-text: #374151;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: var(--color-text);
+  background-color: #fafafa;
+}
+
 /* Disable pulse once image is loaded */
 img[decoding="async"][src] + .image-skeleton {
   display: none;
 }
 
-h1,h2,h3,li {
+h1, h2, h3, h4, h5, h6, li {
   font-family: "adobe-fan-heiti-std", sans-serif;
+  font-style: normal;
+}
 
-font-style: normal;/* Check exact font name from Adobe */
+p, a, span {
+  font-family: "Geist", "Inter", sans-serif;
 }
 @keyframes shake {
   0%, 100% { transform: translateX(0); }

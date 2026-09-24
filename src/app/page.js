@@ -44,10 +44,12 @@ export default function HomePage() {
 </Head>
 
 
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-[var(--color-primary)] text-[var(--color-text)] flex flex-col">
         <h1 className="sr-only">Daminih Arts - Handmade Paintings & Workshops</h1>
         <Banner />
-        <ProductSection />
+        <div className="flex-grow pb-16">
+          <ProductSection />
+        </div>
       </main>
     </>
   );
