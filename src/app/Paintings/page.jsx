@@ -23,7 +23,7 @@ export default async function Page() {
       "@type": "Offer",
       "url": `https://www.daminiharts.com/product/${product.id}`,
       "priceCurrency": "INR",
-      "price": product.price.toString(),
+      "price": (product.price ?? "").toString(),
       "availability": "https://schema.org/InStock"
     }
   }));

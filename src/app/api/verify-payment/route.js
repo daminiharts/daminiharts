@@ -1,6 +1,6 @@
 import crypto from "crypto";
-
 import { NextResponse } from "next/server";
+import { sendReceiptEmail } from "@/libs/sendReceiptEmail";
 
 export async function POST(req) {
   try {
@@ -10,14 +10,22 @@ export async function POST(req) {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
+      name,
+      email,
+      phone,
+      address,
+      pincode,
+      city,
+      state,
+      cartItems,
+      total,
     } = body;
 
     const generatedSignature =
       crypto
         .createHmac(
           "sha256",
-          process.env
-            .RAZORPAY_KEY_SECRET
+          process.env.RAZORPAY_KEY_SECRET
         )
         .update(
           `${razorpay_order_id}|${razorpay_payment_id}`
@@ -28,6 +36,26 @@ export async function POST(req) {
       generatedSignature ===
       razorpay_signature
     ) {
+      // Send receipt email reliably
+      try {
+        if (email && cartItems) {
+          await sendReceiptEmail({
+            to: email,
+            name,
+            amount: total,
+            paymentId: razorpay_payment_id,
+            products: cartItems,
+            address,
+            phone,
+            pincode,
+            city,
+            state,
+          });
+        }
+      } catch (emailErr) {
+        console.error("Failed to send receipt email from verify-payment:", emailErr);
+      }
+
       return NextResponse.json({
         success: true,
       });

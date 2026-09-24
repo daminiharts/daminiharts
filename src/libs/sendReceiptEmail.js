@@ -52,27 +52,30 @@ export async function sendReceiptEmail({
   ];
 
   const productList = products
-    .map(
-      (p) => `
+    .map((p) => {
+      const itemTitle = p.title || p.name || "Product";
+      const itemPrice = Number(p.offer || p.discountedPrice || p.price || p.originalPrice || 0);
+      const itemQty = p.quantity || 1;
+      return `
       <tr>
         <td style="padding:8px;border:1px solid #ddd;">
-          ${p.title}
+          ${itemTitle}
         </td>
 
         <td style="padding:8px;border:1px solid #ddd;">
-          ₹${p.price}
+          ₹${itemPrice}
         </td>
 
         <td style="padding:8px;border:1px solid #ddd;">
-          ${p.quantity}
+          ${itemQty}
         </td>
 
         <td style="padding:8px;border:1px solid #ddd;">
-          ₹${p.price * p.quantity}
+          ₹${itemPrice * itemQty}
         </td>
       </tr>
-    `
-    )
+    `;
+    })
     .join("");
 
   await transporter.sendMail({

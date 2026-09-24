@@ -6,28 +6,38 @@ const optimizeCloudinaryUrl = (url) => {
 };
 
 export async function getAllProducts() {
-  const res = await fetch(sheetUrl, { next: { revalidate: 60 } });
-  const data = await res.json();
+  if (!sheetUrl) return [];
 
-  return data.map((item, idx) => {
-    const imageKeys = Object.keys(item).filter(key => key.startsWith("image"));
-    const images = imageKeys
-      .map(key => item[key])
-      .filter(Boolean)
-      .map(optimizeCloudinaryUrl);
+  try {
+    const res = await fetch(sheetUrl, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    const data = await res.json();
 
-    return {
-      id: item.id?.toString() || idx.toString(),
-      title: item.title,
-      description: item.description,
-      price: item.price,
-      offer: item.offer,
-      aboutProduct: item.aboutProduct,
-      days: item.days,
-      time: item.time,
-      images,
-      type: item.type,
-    };
-  });
+    if (!Array.isArray(data)) return [];
+
+    return data.map((item, idx) => {
+      const imageKeys = Object.keys(item).filter(key => key.startsWith("image"));
+      const images = imageKeys
+        .map(key => item[key])
+        .filter(Boolean)
+        .map(optimizeCloudinaryUrl);
+
+      return {
+        id: item.id?.toString() || idx.toString(),
+        title: item.title || "",
+        description: item.description || "",
+        price: item.price || 0,
+        offer: item.offer || null,
+        aboutProduct: item.aboutProduct || "",
+        days: item.days || "",
+        time: item.time || "",
+        images,
+        type: item.type || "",
+      };
+    });
+  } catch (error) {
+    console.error("Failed to fetch products:", error);
+    return [];
+  }
 }
 
