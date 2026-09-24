@@ -42,48 +42,44 @@ export default async function Page() {
         />
       </Head>
 
-      <main className=" p-1 md:py-12 md:px-6  w-full md:px-20">
-        <div className="max-w-4xl h-full   mx-auto">
-          <h1 className="text-2xl md:text-3xl text-gray-900 text-center mb-8">Calendars</h1>
+      <main className="min-h-screen bg-[var(--color-primary)] py-12 px-6 w-full md:px-20 text-[var(--color-text)]">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-16 text-[var(--color-accent)] tracking-tight">
+            Calendars
+          </h1>
 
-         <div
-  role="list"
-  className="grid gap-4 grid-cols-2 lg:grid-cols-3 group"
->
+          <div
+            role="list"
+            className="flex flex-wrap justify-center gap-10"
+          >
             {calendarsProducts.length === 0 ? (
-              <div className="col-span-full text-center py-12 text-gray-500 text-lg">No art for now</div>
+              <div className="w-full text-center py-12 text-gray-500 text-lg">No art for now</div>
             ) : (
               calendarsProducts.map((product) => (
                 <article
-              key={product.id}
-  role="listitem"
-  className="overflow-hidden rounded shadow-md border-gray-200 rounded border-2 hover:shadow-lg transition bg-white relative 
-             transform duration-300 ease-in-out 
-             group-hover:scale-95 hover:scale-105 z-10"
+                  key={product.id}
+                  role="listitem"
+                  className="w-full sm:w-[350px] md:w-[400px] bg-white overflow-hidden rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 ease-out hover:-translate-y-2 relative"
                 >
-                 <Link href={`/product/${encodeURIComponent(product.title)}`}
-  aria-label={`View details for ${product.title}`}
-  className="cursor-pointer block relative "
->
-                  <div className="relative bg-white w-full h-48 md:h-64">
-  {/* Skeleton placeholder */}
-  
-<OfferTag originalPrice={product.price} offerPrice={product.offer} />
-  {/* Image */}
-  <Image
-    src={product.images[0]}
-    alt={product.title}
-    width={500}
-    height={500}
-    loading="lazy"
-    sizes="(max-width: 768px) 100vw, 33vw"
-    className="w-full h-full object-contain bg-white relative z-10"
-   // your low-res blurred image
-  />
-</div>
-                    <div className="p-1 md:py-4 md:px-2 space-y-1 text-center">
-                      <h2 className="text-xs text-black">{product.title}</h2>
-                      <p className="text-gray-600 text-xs text-start">{product.description}</p>
+                  <Link href={`/product/${encodeURIComponent(product.title)}`}
+                    aria-label={`View details for ${product.title}`}
+                    className="cursor-pointer block relative flex flex-col h-full"
+                  >
+                    <div className="relative bg-gray-50 w-full h-64 md:h-80 overflow-hidden">
+                      <OfferTag originalPrice={product.price} offerPrice={product.offer} />
+                      <Image
+                        src={product.images[0]}
+                        alt={product.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-6 md:p-8 flex flex-col flex-grow text-center">
+                      <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">{product.title}</h2>
+                      <p className="text-gray-600 text-sm md:text-base leading-relaxed flex-grow">
+                        {product.description}
+                      </p>
                     </div>
                   </Link>
                 </article>
