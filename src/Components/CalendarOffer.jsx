@@ -26,9 +26,7 @@ const CalendarOffer = () => {
   }, 0);
 
   // Apply offer only if more than 1 calendar
-  const discountRate = 0.1;
-  const discount = calendarCount > 1 ? calendarTotal * discountRate : 0;
-  const finalTotal = total - discount;
+  const discount = calendarCount > 1 ? calendarTotal - (calendarCount * 499) : 0;
 
   return (
     <div className="p-4 rounded-2xl shadow-md bg-green-50 mt-4">

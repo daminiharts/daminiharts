@@ -114,11 +114,12 @@ const total = (() => {
 
   let finalTotal = calendarTotal + otherTotal;
 
-  // ✅ Apply 10% discount only if more than 1 calendar
+  // ✅ Apply 499 per calendar logic if more than 1 calendar
   if (calendarCount > 1) {
-    console.log("Applying 10% discount on calendars");
-    const discount = calendarTotal * 0.1; // 10% off calendars
-    finalTotal = calendarTotal - discount + otherTotal;
+    console.log("Applying bulk pricing: 499 per calendar");
+    // Recalculate calendarTotal with new price
+    calendarTotal = calendarCount * 499;
+    finalTotal = calendarTotal + otherTotal;
   }
 
   return finalTotal;
